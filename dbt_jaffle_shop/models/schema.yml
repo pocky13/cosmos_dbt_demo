@@ -11,24 +11,30 @@ models:
           - unique
           - not_null
 
+        data_type: INTEGER
       - name: first_name
         description: Customer's first name. PII.
 
+        data_type: VARCHAR
       - name: last_name
         description: Customer's last name. PII.
 
+        data_type: VARCHAR
       - name: first_order
         description: Date (UTC) of a customer's first order
 
+        data_type: DATE
       - name: most_recent_order
         description: Date (UTC) of a customer's most recent order
 
+        data_type: DATE
       - name: number_of_orders
         description: Count of the number of orders a customer has placed
 
-      - name: total_order_amount
-        description: Total value (AUD) of a customer's orders
-
+        data_type: BIGINT
+      - name: customer_lifetime_value
+        description: ''
+        data_type: DOUBLE
   - name: orders
     description: This table has basic information about orders, as well as some derived facts based on payments
 
@@ -56,11 +62,6 @@ models:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
 
-      - name: amount
-        description: Total amount (AUD) of the order
-        tests:
-          - not_null
-
       - name: credit_card_amount
         description: Amount of the order (AUD) paid for by credit card
         tests:
@@ -80,3 +81,8 @@ models:
         description: Amount of the order (AUD) paid for by gift card
         tests:
           - not_null
+      - name: amount
+        description: Total amount (AUD) of the order
+        tests:
+          - not_null
+
